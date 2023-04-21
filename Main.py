@@ -38,6 +38,11 @@ class UserCRUD:
         collection = db.collectiom('Users').document(userid)
         res = collection.delete()
         return res
+    
+    def GetAdmin():
+        collection = db.collection("Users")
+        res = collection.where('isAdmin','==',True)
+        return res
 
 class DishCRUD:
     def DishAdd(dish):

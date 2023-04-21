@@ -125,6 +125,12 @@ def changingComposition(orderIngridients, userId, shavermaCount, ingridients):
                         ingupdate = Ingridient(ingredienaforupdatedict['name'],ingredienaforupdatedict['price'],countingrid,ingredienaforupdatedict['common'])
                         IngridientCRUD.UpdateIngridient(ingid,ingupdate)
 
+                    admup = UserCRUD.GetAdmin()
+                    for i in admup:
+                        admupdict = i.to_dict()
+                        idadmup = i.id
+                    adm = User(admupdict['email'],admupdict['password'],admupdict['isAdmin'],int(admupdict['balance'])+totalPrice,admupdict['loyalty'])
+                    UserCRUD.UpdateUser(idadmup,adm)
                     userup = User(userdict['email'],userdict['password'],userdict['isAdmin'],userbalance-totalPrice,userdict['loyalty'])
                     UserCRUD.UpdateUser(userId,userup)
                     print("Заказ успешно оформлен!")
