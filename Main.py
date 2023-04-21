@@ -41,7 +41,7 @@ class UserCRUD:
     
     def GetAdmin():
         collection = db.collection("Users")
-        res = collection.where('isAdmin','==',True)
+        res = collection.where('isAdmin','==',True).get()
         return res
 
 class DishCRUD:

@@ -97,7 +97,7 @@ def supply(adminId):
     else:
         for i in ingridients:
             ingdict = i.to_dict()
-            print(f" {ingdict['name']} - {ingdict['price']} руб. На складе: {ingdict['CountInWarehouse']} шт.")
+            print(f" {ingdict['name']} - {ingdict['price']} руб. На складе: {ingdict['countInWarehouse']} шт.")
 
         try:
             idIngridient = input("Выберите ингредиент для поставки: \n")
@@ -121,7 +121,7 @@ def supply(adminId):
                     if adminbalance >= 0:
                         updateadm = User(admdict['email'],admdict['password'],admdict['isAdmin'],adminbalance,admdict['loyalty'])
                         UserCRUD.UpdateUser(adminId,updateadm)
-                        updateing = Ingridient(ingridientdict['name'],ingridientdict['price'],count,ingridientdict['comon'])
+                        updateing = Ingridient(ingridientdict['name'],ingridientdict['price'],count+ int(ingridientdict['countInWarehouse']),ingridientdict['common'])
                         IngridientCRUD.UpdateIngridient(ingid,updateing)
 
                         print("Заказ выполнен!")
